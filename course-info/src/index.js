@@ -27,8 +27,6 @@ const App = () => {
   );
 };
 
-const Title = ({ course }) => {
-  return <h1>{course}</h1>;
-};
+const Title = ({ course }) => (<h1>{course}</h1>);
 
 ReactDOM.render(<App />, document.getElementById('root'));
