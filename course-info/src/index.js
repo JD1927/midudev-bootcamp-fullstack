@@ -9,22 +9,35 @@ const App = () => {
   const exercises2 = 7;
   const part3 = 'State of a component';
   const exercises3 = 14;
+  const contentList = [
+    { part: part1, exercise: exercises1 },
+    { part: part2, exercise: exercises2 },
+    { part: part3, exercise: exercises3 },
+  ];
+  const totalExercises = contentList.reduce(((acc, curr) => acc + curr.exercise), 0);
 
   return (
     <div>
       <Title course={course} />
-      <Content part={part1} exercise={exercises1}/>
-      <Content part={part2} exercise={exercises2}/>
-      <Content part={part3} exercise={exercises3}/>
-      <Total totalExercises={exercises1 + exercises2 + exercises3}/>
-
+      <Content contentList={contentList}/>
+      <Total totalExercises={totalExercises}/>
     </div>
   );
 };
 
 const Title = ({ course }) => (<h1>{course}</h1>);
 
-const Content = ({ part, exercise }) => <p>{part} {exercise}</p>;
+const Content = ({ contentList }) => {
+  return (
+    <div>
+      {
+        contentList.map((content, idx) => <Part key={idx} part={content.part} exercise={content.exercise}/>)
+      }
+    </div>
+  );
+};
+
+const Part = ({ part, exercise }) => <p>{part} {exercise}</p>;
 
 const Total = ({ totalExercises }) => <p>Number of exercises {totalExercises}</p>
 
